@@ -11,7 +11,8 @@ export class Form extends Component {
 			name: '',
 			phone: Number,
 			email: '',
-			message: ''
+			message: '',
+			submit: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,9 +24,11 @@ export class Form extends Component {
 
 	handleSubmit(evt) {
 		evt.preventDefault();
+		this.setState({
+			submit: true
+		});
 	}
-
-	render() {
+	renderForm() {
 		return (
 			<div className="Form">
 				<h1>Contact Us</h1>
@@ -80,6 +83,19 @@ export class Form extends Component {
 				</MuiThemeProvider>
 			</div>
 		);
+	}
+
+	render() {
+		if (this.state.submit) {
+			return (
+				<div className="Form Form-HandleSubmit">
+					<h1>Thank you for your response.</h1>
+					<h2>Our representative will contact you shortly.</h2>
+				</div>
+			);
+		} else {
+			return this.renderForm();
+		}
 	}
 }
 
