@@ -28,6 +28,7 @@ export class Form extends Component {
 	render() {
 		return (
 			<div className="Form">
+				<h1>Contact Us</h1>
 				<MuiThemeProvider>
 					<React.Fragment>
 						<TextField

@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
 import Form from './components/Form';
+import Sidebar from './components/Sidebar';
 
 function App() {
 	return (
 		<div className="App">
-			<h1>Contact Us</h1>
-			<Form />
+			<div className="App-container">
+				<Sidebar />
+				<Form />
+			</div>
 		</div>
 	);
 }
