@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
+
 import '../assets/stylesheets/Form.css';
 
 export class Form extends Component {
@@ -34,51 +35,51 @@ export class Form extends Component {
 				<h1>Contact Us</h1>
 				<MuiThemeProvider>
 					<React.Fragment>
-						<TextField
-							required
-							fullWidth
-							hintText="Enter your Name"
-							floatingLabelText="Name"
-							onChange={this.handleChange}
-							name="name"
-							className="Form-TextField"
-						/>
-						<TextField
-							required
-							fullWidth
-							hintText="Enter your phone"
-							floatingLabelText="Phone number"
-							onChange={this.handleChange}
-							name="phone"
-							className="Form-TextField"
-						/>
-						<TextField
-							required
-							fullWidth
-							hintText="Enter your email"
-							floatingLabelText="Email"
-							onChange={this.handleChange}
-							type="email"
-							name="email"
-							className="Form-TextField"
-						/>
-						<TextField
-							required
-							multiLine
-							fullWidth
-							hintText="Enter your message for us"
-							floatingLabelText="Message"
-							onChange={this.handleChange}
-							rows="5"
-							name="message"
-							className="Form-TextField Message"
-						/>
-						<RaisedButton
-							label="Submit"
-							primary={true}
-							onClick={this.handleSubmit}
-							className="Form-submitButton"
-						/>
+						<form onSubmit={this.handleSubmit}>
+							<TextField
+								required
+								fullWidth
+								hintText="Enter your Name"
+								floatingLabelText="Name"
+								onChange={this.handleChange}
+								name="name"
+								className="Form-TextField"
+							/>
+							<TextField
+								required
+								fullWidth
+								hintText="Enter your phone"
+								floatingLabelText="Phone number"
+								onChange={this.handleChange}
+								name="phone"
+								className="Form-TextField"
+								type="tel"
+							/>
+							<TextField
+								required
+								fullWidth
+								hintText="Enter your email"
+								floatingLabelText="Email"
+								onChange={this.handleChange}
+								type="email"
+								name="email"
+								className="Form-TextField"
+							/>
+							<TextField
+								required
+								multiLine
+								fullWidth
+								hintText="Enter your message for us"
+								floatingLabelText="Message"
+								onChange={this.handleChange}
+								rows="5"
+								name="message"
+								className="Form-TextField Message"
+							/>
+							<Button variant="contained" color="primary" type="submit" className="Form-submitButton">
+								Submit
+							</Button>
+						</form>
 					</React.Fragment>
 				</MuiThemeProvider>
 			</div>
@@ -88,8 +89,9 @@ export class Form extends Component {
 	render() {
 		if (this.state.submit) {
 			return (
-				<div className="Form Form-HandleSubmit">
+				<div className="Form">
 					<h1>Thank you for your response.</h1>
+					<i class="lni-phone" />
 					<h2>Our representative will contact you shortly.</h2>
 				</div>
 			);
