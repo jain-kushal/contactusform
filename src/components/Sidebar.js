@@ -5,7 +5,7 @@ export class Sidebar extends Component {
 	render() {
 		return (
 			<div className="Sidebar">
-				<i class="lni-customer" />
+				<i className="lni-customer" />
 				<h3>
 					<em>
 						Our Vision,<br />Our best Service

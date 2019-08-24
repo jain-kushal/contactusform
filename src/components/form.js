@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import Button from '@material-ui/core/Button';
 
 import '../assets/stylesheets/Form.css';
+import axios from 'axios';
 
 export class Form extends Component {
 	constructor(props) {
@@ -25,6 +26,35 @@ export class Form extends Component {
 
 	handleSubmit(evt) {
 		evt.preventDefault();
+		console.log(this.state.message);
+
+		const URL = 'https://1jqwp5g673.execute-api.us-west-2.amazonaws.com/prod/handlerForContactUs/';
+
+		axios
+			.post(
+				URL,
+				JSON.stringify({
+					name: this.state.name,
+					phone: this.state.phone,
+					email: this.state.email,
+					desc: this.state.message
+				}),
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*',
+						statusCode: 200,
+						body: "{'result':'Success.'}"
+					}
+				}
+			)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+
 		this.setState({
 			submit: true
 		});
@@ -35,7 +65,7 @@ export class Form extends Component {
 				<h1>Contact Us</h1>
 				<MuiThemeProvider>
 					<React.Fragment>
-						<form onSubmit={this.handleSubmit}>
+						<form method="post" onSubmit={this.handleSubmit}>
 							<TextField
 								required
 								fullWidth
@@ -61,7 +91,6 @@ export class Form extends Component {
 								hintText="Enter your email"
 								floatingLabelText="Email"
 								onChange={this.handleChange}
-								type="email"
 								name="email"
 								className="Form-TextField"
 							/>
