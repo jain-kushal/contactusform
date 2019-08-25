@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 
 import '../assets/stylesheets/Form.css';
 import axios from 'axios';
+import '../assets/stylesheets/Loader.css';
 
 export class Form extends Component {
 	constructor(props) {
@@ -14,7 +15,9 @@ export class Form extends Component {
 			phone: Number,
 			email: '',
 			message: '',
-			submit: false
+			submit: false,
+			success: Boolean,
+			loading: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +31,11 @@ export class Form extends Component {
 		evt.preventDefault();
 		console.log(this.state.message);
 
-		const URL = 'https://1jqwp5g673.execute-api.us-west-2.amazonaws.com/prod/handlerForContactUs/';
+		this.setState({
+			loading: true
+		});
+
+		const URL = 'https://1jqwp5g673.execute-api.us-west-2.amazonaws.com/prod/handlerForContactUs';
 
 		axios
 			.post(
@@ -50,14 +57,20 @@ export class Form extends Component {
 			)
 			.then((res) => {
 				console.log(res);
+				this.setState({
+					loading: false,
+					submit: true,
+					success: true
+				});
 			})
 			.catch((err) => {
 				console.log(err);
+				this.setState({
+					loading: false,
+					submit: true,
+					success: false
+				});
 			});
-
-		this.setState({
-			submit: true
-		});
 	}
 	renderForm() {
 		return (
@@ -101,7 +114,7 @@ export class Form extends Component {
 								hintText="Enter your message for us"
 								floatingLabelText="Message"
 								onChange={this.handleChange}
-								rows="5"
+								rows={5}
 								name="message"
 								className="Form-TextField Message"
 							/>
@@ -115,15 +128,43 @@ export class Form extends Component {
 		);
 	}
 
+	renderSuccess() {
+		return (
+			<div className="Form">
+				<h1>Thank you for your response.</h1>
+				<i className="lni-phone" />
+				<h2>Our representative will contact you shortly.</h2>
+			</div>
+		);
+	}
+	renderFailure() {
+		return (
+			<div className="Form">
+				<h1>Oops! Something went wrong.</h1>
+				<i className="lni-warning" />
+				<h3>Please try again or use a different browser if the issue persists.</h3>
+			</div>
+		);
+	}
+
 	render() {
-		if (this.state.submit) {
+		if (this.state.loading) {
 			return (
 				<div className="Form">
-					<h1>Thank you for your response.</h1>
-					<i class="lni-phone" />
-					<h2>Our representative will contact you shortly.</h2>
+					<div id="loader">
+						<span />
+						<span />
+						<span />
+						<span />
+						<span />
+					</div>
 				</div>
 			);
+		}
+		if (this.state.success && this.state.submit) {
+			return this.renderSuccess();
+		} else if (!this.state.success && this.state.submit) {
+			return this.renderFailure();
 		} else {
 			return this.renderForm();
 		}
