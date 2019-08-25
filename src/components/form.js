@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import Button from '@material-ui/core/Button';
-
 import '../assets/stylesheets/Form.css';
 import axios from 'axios';
 import '../assets/stylesheets/Loader.css';

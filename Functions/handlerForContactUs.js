@@ -1,8 +1,7 @@
 var AWS = require('aws-sdk'),
 	ses = new AWS.SES();
 
-var RECEIVER = 'mr.kushaljain@gmail.com',
-	SENDER = 'mr.kushaljain@gmail.com';
+var SENDER = 'mr.kushaljain@gmail.com';
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
