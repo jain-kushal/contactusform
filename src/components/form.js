@@ -32,6 +32,8 @@ export class Form extends Component {
 		this.setState({
 			loading: true
 		});
+
+		//Send a POST Request to the API
 		const URL = 'https://1jqwp5g673.execute-api.us-west-2.amazonaws.com/prod/handlerForContactUs';
 
 		axios
@@ -70,6 +72,7 @@ export class Form extends Component {
 			});
 	}
 
+	// This method is to render form with input fields
 	renderForm() {
 		return (
 			<div className="Form">
@@ -127,6 +130,7 @@ export class Form extends Component {
 		);
 	}
 
+	// This handles success --> if status:200 is received
 	renderSuccess() {
 		return (
 			<div className="Form">
@@ -136,6 +140,8 @@ export class Form extends Component {
 			</div>
 		);
 	}
+
+	// This handles error
 	renderFailure() {
 		return (
 			<div className="Form">
@@ -145,6 +151,8 @@ export class Form extends Component {
 			</div>
 		);
 	}
+
+	// To render loading animation
 	renderLoader() {
 		return (
 			<div className="Form">
