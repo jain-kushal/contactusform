@@ -8,9 +8,14 @@
 	display: flex;
 	flex-direction: row;
 }
-@media (max-width: 560px) {
+@media (max-width: 576px) {
 	.App {
 		width: 90vw;
+	}
+}
+@media (min-width: 576px) and (max-width: 992px) {
+	.App {
+		width: 75vw;
 	}
 }
 

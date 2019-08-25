@@ -16,6 +16,11 @@
 		width: 90%;
 	}
 }
+/* @media (min-width: 576px) and (max-width: 992px) {
+	.Form {
+		width: 60%;
+	}
+} */
 
 .Form-TextField {
 	margin: 5px;

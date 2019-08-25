@@ -17,6 +17,11 @@
 		display: none;
 	}
 }
+@media (min-width: 576px) and (max-width: 992px) {
+	.Sidebar {
+		width: 35%;
+	}
+}
 
 .Sidebar i {
 	font-size: 5em;
@@ -26,4 +31,5 @@
 .Sidebar h3 {
 	width: 10em;
 	margin: 0 auto;
+	overflow-wrap: break-word;
 }
