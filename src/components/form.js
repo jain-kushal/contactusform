@@ -12,7 +12,7 @@ export class Form extends Component {
 		super(props);
 		this.state = {
 			name: '',
-			phone: Number,
+			phone: '',
 			email: '',
 			message: '',
 			submit: false,
@@ -33,7 +33,6 @@ export class Form extends Component {
 		this.setState({
 			loading: true
 		});
-
 		const URL = 'https://1jqwp5g673.execute-api.us-west-2.amazonaws.com/prod/handlerForContactUs';
 
 		axios
@@ -71,6 +70,7 @@ export class Form extends Component {
 				});
 			});
 	}
+
 	renderForm() {
 		return (
 			<div className="Form">
@@ -91,11 +91,12 @@ export class Form extends Component {
 								required
 								fullWidth
 								hintText="Enter your phone"
-								floatingLabelText="Phone number"
+								floatingLabelText="Phone number Format: 123-456-7890"
 								onChange={this.handleChange}
 								name="phone"
 								className="Form-TextField"
 								type="tel"
+								pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 							/>
 							<TextField
 								required
