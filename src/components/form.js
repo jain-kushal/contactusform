@@ -29,8 +29,7 @@ export class Form extends Component {
 
 	handleSubmit(evt) {
 		evt.preventDefault();
-		console.log(this.state.message);
-
+		// console.log(this.state.message);
 		this.setState({
 			loading: true
 		});
@@ -56,7 +55,7 @@ export class Form extends Component {
 				}
 			)
 			.then((res) => {
-				console.log(res);
+				// console.log(res);
 				this.setState({
 					loading: false,
 					submit: true,
@@ -64,7 +63,7 @@ export class Form extends Component {
 				});
 			})
 			.catch((err) => {
-				console.log(err);
+				// console.log(err);
 				this.setState({
 					loading: false,
 					submit: true,
@@ -146,22 +145,24 @@ export class Form extends Component {
 			</div>
 		);
 	}
+	renderLoader() {
+		return (
+			<div className="Form">
+				<div id="loader">
+					<span />
+					<span />
+					<span />
+					<span />
+					<span />
+				</div>
+			</div>
+		);
+	}
 
 	render() {
 		if (this.state.loading) {
-			return (
-				<div className="Form">
-					<div id="loader">
-						<span />
-						<span />
-						<span />
-						<span />
-						<span />
-					</div>
-				</div>
-			);
-		}
-		if (this.state.success && this.state.submit) {
+			return this.renderLoader();
+		} else if (this.state.success && this.state.submit) {
 			return this.renderSuccess();
 		} else if (!this.state.success && this.state.submit) {
 			return this.renderFailure();
